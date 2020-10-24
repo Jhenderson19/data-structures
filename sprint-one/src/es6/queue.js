@@ -15,8 +15,8 @@ class Queue {
     var value;
     if (this.length > 0) {
       value = this.storage[this.front];
-      this.length--;
       delete this.storage[this.front];
+      this.length--;
       this.front++;
     }
     return value;
