@@ -37,4 +37,17 @@ describe('binarySearchTree', function() {
     binarySearchTree.depthFirstLog(func);
     expect(array).to.eql([5, 2, 3, 7]);
   });
+
+  it('should execute a callback on every value and should not alter tree', function () {
+    var array = [];
+    var func = function(value) { return value + 3; };
+    binarySearchTree.insert(0);
+    binarySearchTree.insert(10);
+    binarySearchTree.insert(15);
+    binarySearchTree.depthFirstLog(func);
+    expect(binarySearchTree.contains(0)).to.equal(true);
+    expect(binarySearchTree.contains(5)).to.equal(true);
+    expect(binarySearchTree.contains(10)).to.equal(true);
+    expect(binarySearchTree.contains(15)).to.equal(true);
+  });
 });

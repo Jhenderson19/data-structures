@@ -7,15 +7,25 @@ var Set = function() {
 var setPrototype = {};
 
 setPrototype.add = function(item) {
-  this._storage.item = true;
+  this._storage[item] = true;
 };
 
 setPrototype.contains = function(item) {
-  return this._storage.item;
+  return this._storage[item];
 };
 
 setPrototype.remove = function(item) {
-  this._storage.item = false;
+  this._storage[item] = false;
+};
+
+setPrototype.inCommon = function(set) {
+  var returnArr = [];
+  for (var key in this._storage) {
+    if (set.contains(key)) {
+      returnArr.push(key);
+    }
+  }
+  return returnArr;
 };
 
 /*

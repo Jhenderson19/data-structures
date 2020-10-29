@@ -57,4 +57,5 @@ var bstMethodsAndProps = {
 
 /*
  * Complexity: What is the time complexity of the above functions?
+ * Time complexity is log n for insert and contains, but linear for depthfirst
  */

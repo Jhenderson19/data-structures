@@ -16,6 +16,26 @@ treeMethods.addChild = function(value) {
   this.children.push(new Tree(value));
 };
 
+treeMethods.removeChild = function(value) {
+  if (this.value === value) {
+    delete this;
+  }
+
+  for (var i = 0; i < this.children.length; i++) {
+    var child = this.children[i];
+
+    if (child.value === value) {
+      this.children.splice(i, 1);
+    }
+  }
+
+  for (var i = 0; i < this.children.length; i++) {
+    var child = this.children[i];
+
+    child.removeChild(value);
+  }
+};
+
 treeMethods.contains = function(target) {
   var traverseAndCompare = function(currentTree) {
 
