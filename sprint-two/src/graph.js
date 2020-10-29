@@ -27,6 +27,11 @@ Graph.prototype.contains = function(node) {
 Graph.prototype.removeNode = function(node) {
   var nodeIndex = this.findNode(node);
 
+  for (var i = 0; i < this.nodes.length; i++) {
+    var currentNode = this.nodes[i];
+    this.removeEdge(currentNode.value, node);
+  }
+
   delete this.nodes[nodeIndex];
 };
 
@@ -44,6 +49,10 @@ Graph.prototype.findNode = function (node) {
 
   for (var i = 0; i < this.nodes.length; i++) {
     var currentNode = this.nodes[i];
+
+    if (currentNode === undefined) {
+      continue;
+    }
 
     if (currentNode.value === node) {
       foundNodeIndex = i;
@@ -85,6 +94,13 @@ Graph.prototype.removeEdge = function(fromNode, toNode) {
 
 // Pass in a callback which will be executed on each node of the graph.
 Graph.prototype.forEachNode = function(cb) {
+  for (var i = 0; i < this.nodes.length; i++) {
+    var currentNode = this.nodes[i];
+
+    if (currentNode !== undefined) {
+      cb(currentNode.value);
+    }
+  }
 };
 
 var Node = function (value) {
