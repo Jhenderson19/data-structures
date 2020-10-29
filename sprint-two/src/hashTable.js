@@ -44,7 +44,6 @@ HashTable.prototype.remove = function(k) {
   for (var i = 0; i < bucket.length; i++) {
     var tuple = bucket[i];
 
-
     if (tuple[0] === k) {
       bucket.splice(i, 1);
     }
