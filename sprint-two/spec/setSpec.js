@@ -24,4 +24,34 @@ describe('set', function() {
     expect(set.contains('Mel Gibson')).to.equal(false);
   });
 
+
+  it('should return common values from a pair of sets', function () {
+    set.add('Mel Gibson');
+    set.add('fluff');
+    set.add('fluff2');
+
+    var set2 = Set();
+    set2.add('lakers');
+    set2.add('Mel Gibson');
+
+    var inCommon = ['Mel Gibson'];
+
+    expect(set.inCommon(set2)).to.eql(inCommon);
+  });
+
+  it('should handle numbers and strings', function () {
+    set.add('Gibson Mel');
+    set.add(5);
+
+    expect(set.contains('Gibson Mel')).to.equal(true);
+    expect(set.contains(5)).to.equal(true);
+  });
+
+  it('should handle objects of any type', function () {
+    set.add([1, 2, 3, 4]);
+    set.add({ a: 'b' });
+
+    expect(set.contains([1, 2, 3, 4])).to.equal(true);
+    expect(set.contains({ a: 'b' })).to.equal(true);
+  });
 });

@@ -52,4 +52,12 @@ describe('linkedList', function() {
   });
 
   // add more tests here to test the functionality of linkedList
+  it('Removing head more times than we have nodes should not delete the head', function () {
+    linkedList.addToTail(4);
+    // linkedList.addToTail(5);
+    linkedList.removeHead();
+    linkedList.removeHead();
+    linkedList.removeHead();
+    expect(linkedList.head).not.to.equal(undefined);
+  });
 });

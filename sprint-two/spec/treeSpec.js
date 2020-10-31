@@ -41,4 +41,50 @@ describe('tree', function() {
     expect(tree.contains(8)).to.equal(true);
   });
 
+  it('should remove a nested child', function () {
+    tree.addChild(5);
+    tree.addChild(6);
+    tree.children[0].addChild(7);
+
+    tree.removeChild(7);
+
+    expect(tree.contains(7)).to.equal(false);
+  });
+
+  it('should remove a branch from a tree', function () {
+    tree.addChild(5);
+    tree.addChild(6);
+    tree.children[0].addChild(7);
+    tree.children[1].addChild(8);
+
+    var removedTree = tree.children[1].removeFromParent();
+
+    expect(tree.contains(6)).to.equal(false);
+    expect(tree.contains(8)).to.equal(false);
+
+
+    expect(removedTree.contains(6)).to.equal(true);
+    expect(removedTree.contains(8)).to.equal(true);
+  });
+
+  it('should execute a callback on every value on the tree', function () {
+    tree.addChild(5);
+    tree.addChild(6);
+    tree.addChild(9);
+    tree.addChild(10);
+    tree.children[0].addChild(154);
+    tree.children[1].addChild(8765);
+    tree.children[2].addChild(1234);
+    tree.children[3].addChild(657);
+
+    var result = [];
+    var expectedLen = 9;
+    var cb = function (val) {
+      result.push(val);
+    };
+
+    tree.traverse(cb);
+
+    expect(result.length).to.equal(expectedLen);
+  });
 });

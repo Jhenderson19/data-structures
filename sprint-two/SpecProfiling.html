@@ -1,0 +1,73 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Profiling Data Structures</title>
+
+    <!-- source files -->
+    <script type="text/javascript" src="src/linkedList.js"></script>
+    <script type="text/javascript" src="src/tree.js"></script>
+    <script type="text/javascript" src="src/graph.js"></script>
+    <script type="text/javascript" src="src/set.js"></script>
+    <script type="text/javascript" src="src/hashTableHelpers.js"></script>
+    <script type="text/javascript" src="src/hashTable.js"></script>
+    <script type="text/javascript" src="src/binarySearchTree.js"></script>
+
+    <script type="text/javascript">
+
+      var linkedListSpeedTest;
+      var testLinkedList;
+      function createTest(){
+        linkedListSpeedTest = function(){
+          testLinkedList = LinkedList();
+
+          for(var i = 0; i < 10000000; i++){
+            testLinkedList.addToTail(i);
+          }
+
+          for(var i = 0; i < 100000; i++){
+            testLinkedList.contains(i);
+          }
+
+          for(var i = 0; i < 10000000; i++){
+            testLinkedList.removeHead();
+          }
+        }
+      }
+
+      createTest();
+
+      linkedListSpeedTest();
+      document.getElementById('body').innerHTML += "Done!";
+    </script>
+
+  </head>
+  <body id="body">
+
+
+
+  </body>
+
+  <!--
+    Function Runtimes
+      - Linked List
+        In our linkedList implementation instantiating took 0.11ms
+        Adding 10,000,000 items to our linked list via .addToTail()
+        took 2.99ms on an AMD 7 2700 CPU
+        Running our .contains() on 100,000 items ran for 30s
+        removeHead() ran 10,000,000 times and the execution time was 24.58ms
+
+  -->
+
+  <!--
+    Memory Use & Object Allocations
+      - Linked List
+
+
+  -->
+
+  <!--
+      Garbage Collection Behavior
+      - Linked List
+
+  -->
+</html>

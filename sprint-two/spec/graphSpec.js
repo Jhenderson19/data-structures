@@ -68,4 +68,10 @@ describe('graph', function() {
     expect(graph.hasEdge(3, 5)).to.equal(true);
     expect(graph.hasEdge(5, 5)).to.equal(true);
   });
+
+  it('should return the index of a node', function() {
+    graph.addNode(4);
+    graph.addNode(5);
+    expect(graph.findNode(5)).to.equal(1);
+  });
 });
