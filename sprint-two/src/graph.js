@@ -6,7 +6,7 @@ var Graph = function() {
 
 // Add a node to the graph, passing in the node's value.
 Graph.prototype.addNode = function(node) {
-  this.nodes.push(new Node(node));
+  this.nodes.push(new Gnode(node));
 };
 
 // Return a boolean value indicating if the value passed to contains is represented in the graph.
@@ -103,13 +103,13 @@ Graph.prototype.forEachNode = function(cb) {
   }
 };
 
-var Node = function (value) {
-  var node = {};
+var Gnode = function (value) {
+  var gnode = {};
 
-  node.value = value;
-  node.edges = [];
+  gnode.value = value;
+  gnode.edges = [];
 
-  return node;
+  return gnode;
 };
 
 /*
