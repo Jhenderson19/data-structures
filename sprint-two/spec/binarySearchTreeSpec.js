@@ -60,4 +60,35 @@ describe('binarySearchTree', function() {
     binarySearchTree.breadthFirstLog(func);
     expect(array).to.eql([5, 2, 7, 3]);
   });
+
+
+  xit('should rebalance itself after its maximum depths is twice the minimum', function () {
+    //        5
+    //      |   |
+    //    4        6
+    //   |
+    //  3
+    // |
+    // 2
+  // 1
+  // 0
+    console.log('BEGIN REBALANCE TEST');
+    var array = [];
+    var func = function (value) { array.push(value); };
+    binarySearchTree.rebalance = true;
+    binarySearchTree.insert(6);
+    binarySearchTree.insert(4);
+    binarySearchTree.insert(3);
+    binarySearchTree.insert(2);
+    binarySearchTree.insert(1);
+    binarySearchTree.insert(0);
+    binarySearchTree.rebalance = false;
+
+    binarySearchTree.depthFirstLog(func);
+    expect(array).to.eql([3, 1, 0, 2, 5, 4, 6]);
+
+
+
+
+  });
 });

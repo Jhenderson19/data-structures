@@ -38,4 +38,20 @@ describe('set', function() {
 
     expect(set.inCommon(set2)).to.eql(inCommon);
   });
+
+  it('should handle numbers and strings', function () {
+    set.add('Gibson Mel');
+    set.add(5);
+
+    expect(set.contains('Gibson Mel')).to.equal(true);
+    expect(set.contains(5)).to.equal(true);
+  });
+
+  it('should handle objects of any type', function () {
+    set.add([1, 2, 3, 4]);
+    set.add({ a: 'b' });
+
+    expect(set.contains([1, 2, 3, 4])).to.equal(true);
+    expect(set.contains({ a: 'b' })).to.equal(true);
+  });
 });
