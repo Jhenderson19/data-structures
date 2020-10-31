@@ -52,6 +52,36 @@ var bstMethodsAndProps = {
     if (this.right !== undefined) {
       this.right.depthFirstLog(cb);
     }
+  },
+  breadthFirstLog(cb) {
+
+    var currentGeneration = [];
+    var nextgeneration = [];
+
+    //current generation is this
+    currentGeneration.push(this);
+
+    //while current generation length is not 0
+    while (currentGeneration.length !== 0) {
+      for (var i = 0; i < currentGeneration.length; i++) {
+
+        //add children to next generation
+        if (currentGeneration[i].left) {
+          nextgeneration.push(currentGeneration[i].left);
+        }
+        if (currentGeneration[i].right) {
+          nextgeneration.push(currentGeneration[i].right);
+        }
+
+        //do callback on current generation
+        cb(currentGeneration[i].value);
+      }
+
+      //current generation = nextgeneration
+      currentGeneration = nextgeneration.flat();
+      nextgeneration = [];
+    }
+
   }
 };
 

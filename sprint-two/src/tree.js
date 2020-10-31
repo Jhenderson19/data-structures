@@ -2,6 +2,7 @@
 var Tree = function(value) {
   var newTree = {};
   newTree.value = value;
+  newTree.parent = undefined;
 
   // your code here
   newTree.children = [];  // fix me
@@ -14,6 +15,7 @@ var treeMethods = {
 
 treeMethods.addChild = function(value) {
   this.children.push(new Tree(value));
+  this.children[this.children.length - 1].parent = this;
 };
 
 treeMethods.removeChild = function(value) {
@@ -33,6 +35,30 @@ treeMethods.removeChild = function(value) {
     var child = this.children[i];
 
     child.removeChild(value);
+  }
+};
+
+treeMethods.removeFromParent = function () {
+  for (var i = 0; i < this.parent.children.length; i++) {
+    var child = this.parent.children[i];
+
+    if (Object.is(child, this)) {
+      this.parent.children.splice(i, 1);
+    }
+  }
+
+  this.parent = undefined;
+
+  return this;
+};
+
+treeMethods.traverse = function(cb) {
+  cb(this.value);
+
+  for (var i = 0; i < this.children.length; i++) {
+    var child = this.children[i];
+
+    child.traverse(cb);
   }
 };
 
